@@ -129,7 +129,7 @@
                 </router-link>
             </section>
         </section>
-        <!-- <foot-guide></foot-guide> -->
+        <foot-guide></foot-guide>
         <transition name="router-slid" mode="out-in">
             <router-view></router-view>
         </transition>
@@ -138,7 +138,7 @@
 
 <script>
 import headTop from 'src/components/header/head'
-// import footGuide from 'src/components/footer/footGuide'
+import footGuide from 'src/components/footer/footGuide'
 import {mapState, mapMutations} from 'vuex'
 import {imgBaseUrl} from 'src/config/env'
 import {getImgPath} from 'src/components/common/mixin'
@@ -163,7 +163,7 @@ export default {
     mixins: [getImgPath],
     components:{
         headTop,
-        // footGuide,
+        footGuide,
     },
 
     computed:{

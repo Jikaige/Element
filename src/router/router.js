@@ -2,6 +2,9 @@ import App from '../App'
 
 const home = r => require.ensure([], () => r(require('../page/home/home')), 'home')
 const city = r => require.ensure([], () => r(require('../page/city/city')), 'city')
+const msite = r => require.ensure([], () => r(require('../page/msite/msite')), 'msite')
+const shop = r => require.ensure([], () => r(require('../page/shop/shop')), 'shop')
+const food = r => require.ensure([], () => r(require('../page/food/food')), 'food')
 const login = r => require.ensure([], () => r(require('../page/login/login')), 'login')
 const profile = r => require.ensure([], () => r(require('../page/profile/profile')), 'profile')
 const info = r => require.ensure([], () => r(require('../page/profile/children/info')), 'info')
@@ -10,6 +13,9 @@ const address = r => require.ensure([], () => r(require('../page/profile/childre
 const add = r => require.ensure([], () => r(require('../page/profile/children/children/children/add')), 'add')
 const addDetail = r => require.ensure([], () => r(require('../page/profile/children/children/children/children/addDetail')), 'addDetail')
 const forget = r => require.ensure([], () => r(require('../page/forget/forget')), 'forget')
+const foodDetail = r => require.ensure([], () => r(require('../page/shop/children/foodDetail')), 'foodDetail')
+const shopDetail = r => require.ensure([], () => r(require('../page/shop/children/shopDetail')), 'shopDetail')
+const shopSafe = r => require.ensure([], () => r(require('../page/shop/children/children/shopSafe')), 'shopSafe')
 export default [{
     path: '/',
     component: App, //顶层路由，对应index.html
@@ -28,6 +34,12 @@ export default [{
         {
             path: '/city/:cityid',
             component: city
+        },
+        //所有商铺列表页
+        {
+            path: '/msite',
+            component: msite,
+            meta: { keepAlive: true },
         },
         //登录注册页
         {
@@ -66,6 +78,27 @@ export default [{
         {
             path: '/forget',
             component: forget
+        },
+        //商铺详情页
+        {
+            path: '/shop',
+            component: shop,
+            children: [{
+                path: 'foodDetail', //食品详情页
+                component: foodDetail,
+            }, {
+                path: 'shopDetail', //商铺详情页
+                component: shopDetail,
+                children: [{
+                    path: 'shopSafe', //商铺安全认证页
+                    component: shopSafe,
+                }, ]
+            }]
+        },
+        //特色商铺列表页
+        {
+            path: '/food',
+            component: food
         },
     ]
 }]

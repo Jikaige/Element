@@ -34,6 +34,21 @@ const hbDescription = r => require.ensure([], () => r(require('../page/benefit/c
 const hbHistory = r => require.ensure([], () => r(require('../page/benefit/children/hbHistory')), 'hbHistory')
 const exchange = r => require.ensure([], () => r(require('../page/benefit/children/exchange')), 'exchange')
 const commend = r => require.ensure([], () => r(require('../page/benefit/children/commend')), 'commend')
+
+const search = r => require.ensure([], () => r(require('../page/search/search')), 'search')
+const order = r => require.ensure([], () => r(require('../page/order/order')), 'order')
+const orderDetail = r => require.ensure([], () => r(require('../page/order/children/orderDetail')), 'orderDetail')
+const vipcard = r => require.ensure([], () => r(require('../page/vipcard/vipcard')), 'vipcard')
+const invoiceRecord = r => require.ensure([], () => r(require('../page/vipcard/children/invoiceRecord')), 'invoiceRecord')
+const useCart = r => require.ensure([], () => r(require('../page/vipcard/children/useCart')), 'useCart')
+const vipDescription = r => require.ensure([], () => r(require('../page/vipcard/children/vipDescription')), 'vipDescription')
+const points = r => require.ensure([], () => r(require('../page/points/points')), 'points')
+const pointsDetail = r => require.ensure([], () => r(require('../page/points/children/detail')), 'pointsDetail')
+const service = r => require.ensure([], () => r(require('../page/service/service')), 'service')
+const questionDetail = r => require.ensure([], () => r(require('../page/service/children/questionDetail')), 'questionDetail')
+const find = r => require.ensure([], () => r(require('../page/find/find')), 'find')
+const download = r => require.ensure([], () => r(require('../page/download/download')), 'download')
+
 export default [{
     path: '/',
     component: App, //顶层路由，对应index.html
@@ -176,6 +191,63 @@ export default [{
                 path: 'commend', //推荐有奖
                 component: commend,
             },]
+        },
+        //搜索页
+        {
+            path: '/search/:geohash',
+            component: search
+        },
+        //订单列表页
+        {
+            path: '/order',
+            component: order,
+            children: [{
+                path: 'orderDetail', //订单详情页
+                component: orderDetail,
+            }, ]
+        },
+        //vip卡页
+        {
+            path: '/vipcard',
+            component: vipcard,
+            children: [{
+                path: 'invoiceRecord', //开发票
+                component: invoiceRecord,
+            }, {
+                path: 'useCart', //购买会员卡
+                component: useCart,
+            }, {
+                path: 'vipDescription', //会员说明
+                component: vipDescription,
+            },]
+        },
+        //我的积分页
+        {
+            path: 'points',
+            component: points,
+            children: [{
+                path: 'detail', //积分说明
+                component: pointsDetail,
+            }, ]
+        },
+        //发现页
+        {
+            path: '/find',
+            component: find
+        },
+        //下载页
+        {
+            path: '/download',
+            component: download
+        },
+        //服务中心
+        {
+            path: '/service',
+            component: service,
+             children: [{
+                path: 'questionDetail', //订单详情页
+                component: questionDetail,
+            }, ]
         },
     ]
 }]
